@@ -24,8 +24,8 @@ struct DriverDetailView: View {
                 ErrorView(reason: reason)
                 
             }
-        }.background(.black).onAppear {
-            vm.fetchDriver(name: driverName)
+        }.background(.black).task {
+            await vm.fetchDriver(name: driverName)
         }
     }
 }

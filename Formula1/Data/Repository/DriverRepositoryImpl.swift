@@ -9,11 +9,11 @@ import Combine
 struct DriverRepositoryImpl: DriversRepository {
     var dataSource: DriversDataSource
     
-    func getDrivers() -> AnyPublisher<[Driver], Error>  {
-        return dataSource.getDrivers()
+    func getDrivers() async throws -> [Driver]  {
+        try await dataSource.getDrivers()
     }
     
-    func getDriver(name: String) -> AnyPublisher<Driver, any Error> {
-        return dataSource.getDriver(name: name)
+    func getDriver(name: String) async throws -> Driver  {
+        try await dataSource.getDriver(name: name)
     }
 }

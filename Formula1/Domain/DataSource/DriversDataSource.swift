@@ -7,6 +7,6 @@
 import Combine
 
 protocol DriversDataSource {
-    func getDrivers() -> AnyPublisher<[Driver], Error>
-    func getDriver(name: String) -> AnyPublisher<Driver, Error>
+    func getDrivers() async throws -> [Driver]
+    func getDriver(name: String) async throws -> Driver
 }

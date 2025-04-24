@@ -16,17 +16,15 @@ import Combine
     
     private var cancellables = Set<AnyCancellable>()
     
-    func fetchDrivers() {
-        driversUseCases.getDrivers()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
-                if case .failure(let error) = completion {
-                    self?.state = .error(reason: error.localizedDescription)
-                }
-            } receiveValue: { [weak self] drivers in
-                self?.state = .loaded(drivers: drivers, title: "Formula 1 Drivers")
+    func fetchDrivers() async {
+        do {
+            let drivers = try await driversUseCases.getDrivers()
+            DispatchQueue.main.async {
+                self.state = .loaded(drivers: drivers, title: "Formula 1 Drivers")
             }
-            .store(in: &cancellables)
+        } catch {
+            self.state = .error(reason: error.localizedDescription)
+        }
     }
     
     func resetForm() {

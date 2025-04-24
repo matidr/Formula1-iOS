@@ -25,8 +25,8 @@ struct ContentView: View {
                     ErrorView(reason: reason)
                     
                 }
-            }.background(.black).onAppear {
-                vm.fetchDrivers()
+            }.background(.black).task {
+                await vm.fetchDrivers()
             }
         }
     }
