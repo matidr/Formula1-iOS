@@ -11,7 +11,7 @@ struct DriverDetailSuccessView: View {
     
     var body: some View {
         VStack {
-            Text(driver.name)
-        }
+            Text(driver.name).foregroundStyle(.white)
+        }.frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height, maxHeight: .infinity).background(.black)
     }
 }

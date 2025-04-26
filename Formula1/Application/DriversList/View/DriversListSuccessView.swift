@@ -14,7 +14,7 @@ struct DriversListSuccessView: View {
         LazyVStack(alignment: .center, spacing: 15) {
             Text(title).font(.system(size: 30, weight: .bold)).foregroundStyle(.white).padding([.top, .bottom], 50)
             ForEach(Array(drivers), id: \.id) { driver in
-                NavigationLink(destination: DriverDetailView(driverName: driver.name)) {
+                NavigationLink(destination: DriverDetailView(driverName: driver.name, driverNumber: driver.id)) {
                     VStack(alignment: .leading) {
                         HStack {
                             ZStack(alignment: .center) {

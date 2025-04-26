@@ -14,9 +14,9 @@ import Combine
     
     private var cancellables = Set<AnyCancellable>()
     
-    func fetchDriver(name: String) async {
+    func fetchDriver(driverNumber: Int, name: String) async {
         do {
-            let driver = try await driverUseCase.getDriver(name: name)
+            let driver = try await driverUseCase.getDriver(driverNumber: driverNumber, name: name)
             DispatchQueue.main.async {
                 self.state = .loaded(driver: driver)
             }

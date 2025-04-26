@@ -13,7 +13,7 @@ struct DriverRepositoryImpl: DriversRepository {
         try await dataSource.getDrivers()
     }
     
-    func getDriver(name: String) async throws -> Driver  {
-        try await dataSource.getDriver(name: name)
+    func getDriver(driverNumber: Int, name: String) async throws -> Driver  {
+        try await dataSource.getDriver(driverNumber: driverNumber, name: name)
     }
 }

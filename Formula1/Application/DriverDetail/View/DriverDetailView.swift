@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DriverDetailView: View {
     let driverName: String
+    let driverNumber: Int
+    
     @StateObject var vm = DriverDetailViewModel()
     
     var body: some View {
@@ -25,11 +27,11 @@ struct DriverDetailView: View {
                 
             }
         }.background(.black).task {
-            await vm.fetchDriver(name: driverName)
+            await vm.fetchDriver(driverNumber: driverNumber, name: driverName)
         }
     }
 }
 
 #Preview {
-    DriverDetailView(driverName: "Lewis Hamilton")
+    DriverDetailView(driverName: "Lewis Hamilton", driverNumber: 44)
 }
