@@ -12,7 +12,13 @@ struct DriverDetailSuccessView: View {
     var body: some View {
         VStack {
             Text(driver.name.lowercased().capitalized).font(.system(size: 32, design: .rounded)).fontWeight(.heavy).foregroundStyle(.white)
-            Text(driver.teamName.lowercased().capitalized).font(.system(size: 24, design: .rounded)).foregroundStyle(Color(hex: driver.teamColor))
+            if let countryName = driver.countryName {
+                Text(countryName.lowercased().capitalized).font(.system(size: 24, design: .rounded)).foregroundStyle(.gray)
+            }
+            
+            AsyncImage(url: driver.imageUrl) { result in
+                result.image?.resizable().scaledToFit()
+            }.frame(width: 200, height: 200).cornerRadius(25)
             
             HStack(alignment: .center) {
                 Spacer()
@@ -37,6 +43,12 @@ struct DriverDetailSuccessView: View {
                 }
                 Spacer()
             }.padding(.top, 30)
+            
+            if let teamLogo = driver.teamLogo {
+                AsyncImage(url: URL(string: teamLogo)) { result in
+                    result.image?.resizable().scaledToFit()
+                }.frame(width: 200, height: 200).cornerRadius(25)
+            }
             Spacer()
         }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.black)
     }

@@ -21,11 +21,12 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
         guard let extraDriverInfoResponse = try await extraDriverInfo else { throw SimpleError.wrongInfo }
         driver.birthDate = extraDriverInfoResponse.birthDate
         driver.carreerPoints = extraDriverInfoResponse.carreerPoints
-        driver.countryName = extraDriverInfoResponse.country.name
-        driver.countryCode = extraDriverInfoResponse.country.code
+        driver.countryName = extraDriverInfoResponse.country?.name
+        driver.countryCode = extraDriverInfoResponse.country?.code
         driver.podiums = extraDriverInfoResponse.podiums
         driver.races = extraDriverInfoResponse.races
         driver.worldChampionships = extraDriverInfoResponse.worldChampionships
+        driver.teamLogo = extraDriverInfoResponse.teams?.first?.team.logo
 
         return driver
     }
@@ -36,7 +37,7 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
         }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.setValue("PASTE-API-KEY-HERE", forHTTPHeaderField: "x-rapidapi-key")
+        request.setValue(API_KEY, forHTTPHeaderField: "x-rapidapi-key")
         request.setValue("api-formula-1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
         
         let (data, _) = try await URLSession.shared.data(for: request)
@@ -72,4 +73,6 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
         case notImplemented
         case wrongInfo
     }
+    
+    let API_KEY = "PASTE_API_KEY_HERE"
 }

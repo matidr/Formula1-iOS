@@ -21,4 +21,5 @@ struct Driver: Identifiable {
     var races: Int?
     var podiums: Int?
     var carreerPoints: String?
+    var teamLogo: String?
 }

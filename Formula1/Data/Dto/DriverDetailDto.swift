@@ -6,12 +6,13 @@
 //
 struct DriverDetailDto: Decodable {
     
-    var country: CountryDto
+    var country: CountryDto?
     var birthDate: String?
     var worldChampionships: Int?
     var races: Int?
     var podiums: Int?
     var carreerPoints: String?
+    var teams: [TeamWrapperDto]?
     
     
     enum CodingKeys: String, CodingKey {
@@ -21,6 +22,7 @@ struct DriverDetailDto: Decodable {
         case races = "grands_prix_entered"
         case podiums = "podiums"
         case carreerPoints = "career_points"
+        case teams = "teams"
     }
 }
 
