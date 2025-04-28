@@ -28,10 +28,13 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
                     id: dto.documentID ?? "",
                     driverNumber: dto.driverNumber ?? 0,
                     name: dto.name ?? "",
+                    lastName: dto.lastName ?? "",
                     driverImageURL: URL(string: dto.driverImage ?? ""),
                     teamColor: dto.teamColor ?? "",
                     teamName: dto.teamName ?? "",
-                    nameAcronym: dto.nameAcronym ?? ""
+                    nameAcronym: dto.nameAcronym ?? "",
+                    countryImageURL: URL(string: dto.countryImage ?? ""),
+                    driverNumberImage: URL(string: dto.driverNumberImage ?? "")
                 )
             }
             return drivers
@@ -49,6 +52,7 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
                 id: dto.documentID ?? "",
                 driverNumber: dto.driverNumber ?? 0,
                 name: dto.name ?? "",
+                lastName: dto.lastName ?? "",
                 driverImageURL: URL(string: dto.driverImage ?? ""),
                 teamColor: dto.teamColor ?? "",
                 teamName: dto.teamName ?? "",
@@ -58,9 +62,12 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
                 races: dto.races ?? 0,
                 podiums: dto.podiums ?? 0,
                 carreerPoints: dto.carreerPoints ?? "",
-                teamLogo: dto.teamLogo ?? "",
+                teamLogo: URL(string: dto.teamLogo ?? ""),
                 helmetImageURL: URL(string: dto.helmetImage ?? ""),
-                countryImageURL: URL(string: dto.countryImage ?? "")
+                countryImageURL: URL(string: dto.countryImage ?? ""),
+                bio: dto.bio ?? "",
+                driverHeroImage: URL(string: dto.driverImageHero ?? ""),
+                driverNumberImage: URL(string: dto.driverNumberImage ?? "")
             )
         } catch {
             throw error

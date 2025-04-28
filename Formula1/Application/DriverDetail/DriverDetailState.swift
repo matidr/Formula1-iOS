@@ -7,6 +7,6 @@
 
 enum DriverDetailState {
     case loading
-    case loaded(driver: Driver)
+    case loaded(driver: DriverDetailUI)
     case error(reason: String)
 }

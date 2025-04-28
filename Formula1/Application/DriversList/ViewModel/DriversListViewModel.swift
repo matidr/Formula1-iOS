@@ -18,7 +18,9 @@ import Combine
     
     func fetchDrivers() async {
         do {
-            let drivers = try await driversUseCases.getDrivers()
+            let drivers = try await driversUseCases.getDrivers().map { driver in
+                driver.toTileUI()
+            }
             DispatchQueue.main.async {
                 self.state = .loaded(drivers: drivers, title: "Formula 1 Drivers")
             }

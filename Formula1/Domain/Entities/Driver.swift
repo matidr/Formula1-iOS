@@ -11,6 +11,7 @@ struct Driver: Identifiable {
     var id: String
     var driverNumber: Int
     var name: String
+    var lastName: String
     var driverImageURL: URL?
     var teamColor: String
     var teamName: String
@@ -22,7 +23,10 @@ struct Driver: Identifiable {
     var races: Int?
     var podiums: Int?
     var carreerPoints: String?
-    var teamLogo: String?
+    var teamLogo: URL?
     var helmetImageURL: URL?
     var countryImageURL: URL?
+    var bio: String?
+    var driverHeroImage: URL?
+    var driverNumberImage: URL?
 }

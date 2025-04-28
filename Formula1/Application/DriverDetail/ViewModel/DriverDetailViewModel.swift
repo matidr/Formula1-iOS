@@ -16,7 +16,7 @@ import Combine
     
     func fetchDriver(driverId: String) async {
         do {
-            let driver = try await driverUseCase.getDriver(driverId: driverId)
+            let driver = try await driverUseCase.getDriver(driverId: driverId).toDetailUI()
             DispatchQueue.main.async {
                 self.state = .loaded(driver: driver)
             }

@@ -8,7 +8,9 @@ struct DriverDto: Decodable {
     var documentID: String?
     var driverNumber: Int?
     var name: String?
+    var lastName: String?
     var driverImage: String?
+    var driverImageHero: String?
     var countryImage: String?
     var helmetImage: String?
     var teamColor: String?
@@ -22,4 +24,6 @@ struct DriverDto: Decodable {
     var podiums: Int?
     var carreerPoints: String?
     var teamLogo: String?
+    var bio: String?
+    var driverNumberImage: String?
 }
