@@ -8,5 +8,5 @@ import Combine
 
 protocol DriversDataSource {
     func getDrivers() async throws -> [Driver]
-    func getDriver(driverNumber: Int, name: String) async throws -> Driver
+    func getDriver(driverId: String) async throws -> Driver
 }

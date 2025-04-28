@@ -9,7 +9,7 @@ import Combine
 struct GetDriverUseCase {
     var repo: DriversRepository
     
-    func getDriver(driverNumber: Int, name: String) async throws -> Driver {
-        return try await repo.getDriver(driverNumber: driverNumber, name: name)
+    func getDriver(driverId: String) async throws -> Driver {
+        return try await repo.getDriver(driverId: driverId)
     }
 }

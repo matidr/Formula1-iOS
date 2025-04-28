@@ -10,15 +10,33 @@ struct DriverDetailSuccessView: View {
     let driver: Driver
     
     var body: some View {
-        VStack {
-            Text(driver.name.lowercased().capitalized).font(.system(size: 32, design: .rounded)).fontWeight(.heavy).foregroundStyle(.white)
-            if let countryName = driver.countryName {
-                Text(countryName.lowercased().capitalized).font(.system(size: 24, design: .rounded)).foregroundStyle(.gray)
+        VStack(alignment: .leading) {
+            HStack {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("\(driver.driverNumber)").font(.system(size: 32, design: .rounded)).fontWeight(.heavy).foregroundStyle(.gray)
+                        AsyncImage(url: driver.countryImageURL) { result in
+                            result.image?.resizable().scaledToFill()
+                        }.frame(width: 40, height: 25)
+                    }
+                    Text(driver.name.lowercased().capitalized).font(.system(size: 32, design: .rounded)).fontWeight(.heavy).foregroundStyle(.white)
+                }
+                Spacer()
+                AsyncImage(url: driver.helmetImageURL) { result in
+                    result.image?.resizable().scaledToFill()
+                }.frame(width: 100, height: 100)
+                Spacer()
             }
             
-            AsyncImage(url: driver.imageUrl) { result in
-                result.image?.resizable().scaledToFit()
-            }.frame(width: 200, height: 200).cornerRadius(25)
+            AsyncImage(url: driver.driverImageURL) { result in
+                result.image?.resizable().scaledToFill()
+            }.frame(maxWidth: .infinity, maxHeight: 150, alignment: .top).offset(y: -25).clipped()
+            
+            if let teamLogo = driver.teamLogo {
+                    AsyncImage(url: URL(string: teamLogo)) { result in
+                        result.image?.resizable().scaledToFit()
+                    }.frame(width: 200, height: 200).cornerRadius(25).frame(maxWidth: .infinity)
+            }
             
             HStack(alignment: .center) {
                 Spacer()
@@ -44,16 +62,11 @@ struct DriverDetailSuccessView: View {
                 Spacer()
             }.padding(.top, 30)
             
-            if let teamLogo = driver.teamLogo {
-                AsyncImage(url: URL(string: teamLogo)) { result in
-                    result.image?.resizable().scaledToFit()
-                }.frame(width: 200, height: 200).cornerRadius(25)
-            }
             Spacer()
         }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.black)
     }
 }
 
 #Preview {
-    DriverDetailSuccessView(driver: Driver(id: 44, name: "Lewis Hamilton", teamColor: "#FF0000", teamName: "Ferrari", nameAcronym: "HAM", worldChampionships: 7, races: 230, podiums: 120, carreerPoints: "430"))
+    DriverDetailSuccessView(driver: Driver(id: "ffVIhdbm3JG51SJTpYNM", driverNumber: 44, name: "Lewis Hamilton", teamColor: "#FF0000", teamName: "Ferrari", nameAcronym: "HAM", worldChampionships: 7, races: 230, podiums: 120, carreerPoints: "430"))
 }

@@ -8,9 +8,10 @@
 import Foundation
 
 struct Driver: Identifiable {
-    var id: Int
+    var id: String
+    var driverNumber: Int
     var name: String
-    var imageUrl: URL?
+    var driverImageURL: URL?
     var teamColor: String
     var teamName: String
     var nameAcronym: String
@@ -22,4 +23,6 @@ struct Driver: Identifiable {
     var podiums: Int?
     var carreerPoints: String?
     var teamLogo: String?
+    var helmetImageURL: URL?
+    var countryImageURL: URL?
 }

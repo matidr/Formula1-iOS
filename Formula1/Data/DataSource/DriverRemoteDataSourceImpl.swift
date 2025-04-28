@@ -16,11 +16,19 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
         do {
             let querySnapshot = try await db.collection("drivers").getDocuments()
             let drivers: [Driver] = try querySnapshot.documents.map { document in
-                let dto = try document.data(as: DriverDto.self)
+                var dto = try document.data(as: DriverDto.self)
+                dto.documentID = document.documentID
+                return dto
+            }.sorted { guard let order0 = $0.order, let order1 = $1.order else {
+                return $0.order != nil // Entries with non-nil order come first
+            }
+                return order0 < order1
+            }.map { dto in
                 return Driver(
-                    id: dto.driverNumber ?? 0,
+                    id: dto.documentID ?? "",
+                    driverNumber: dto.driverNumber ?? 0,
                     name: dto.name ?? "",
-                    imageUrl: URL(string: dto.image ?? ""),
+                    driverImageURL: URL(string: dto.driverImage ?? ""),
                     teamColor: dto.teamColor ?? "",
                     teamName: dto.teamName ?? "",
                     nameAcronym: dto.nameAcronym ?? ""
@@ -32,8 +40,31 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
         }
     }
     
-    func getDriver(driverNumber: Int, name: String) async throws -> Driver {
-        throw SimpleError.notImplemented
+    func getDriver(driverId: String) async throws -> Driver {
+        do {
+            let querySnapshot = try await db.collection("drivers").document(driverId).getDocument()
+            let dto = try querySnapshot.data(as: DriverDto.self)
+            
+            return Driver(
+                id: dto.documentID ?? "",
+                driverNumber: dto.driverNumber ?? 0,
+                name: dto.name ?? "",
+                driverImageURL: URL(string: dto.driverImage ?? ""),
+                teamColor: dto.teamColor ?? "",
+                teamName: dto.teamName ?? "",
+                nameAcronym: dto.nameAcronym ?? "",
+                countryName: dto.country ?? "",
+                worldChampionships: dto.worldChampionships ?? 0,
+                races: dto.races ?? 0,
+                podiums: dto.podiums ?? 0,
+                carreerPoints: dto.carreerPoints ?? "",
+                teamLogo: dto.teamLogo ?? "",
+                helmetImageURL: URL(string: dto.helmetImage ?? ""),
+                countryImageURL: URL(string: dto.countryImage ?? "")
+            )
+        } catch {
+            throw error
+        }
     }
     
     enum SimpleError: Error {
