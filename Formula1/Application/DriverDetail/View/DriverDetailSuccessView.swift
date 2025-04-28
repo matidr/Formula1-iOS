@@ -30,12 +30,37 @@ struct DriverDetailSuccessView: View {
             
             AsyncImage(url: driver.driverImageURL) { result in
                 result.image?.resizable().scaledToFill()
-            }.frame(maxWidth: .infinity, maxHeight: 150, alignment: .top).offset(y: -25).clipped()
+            }.frame(maxWidth: .infinity, maxHeight: 180, alignment: .top)
+                .offset(y: -10)
+                .mask(
+                    LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: .clear, location: 0.0),
+                            .init(color: .black.opacity(0.9), location: 0.05),
+                            .init(color: .black.opacity(0.9), location: 0.95),
+                            .init(color: .clear, location: 1.0)
+                        ]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+                .mask(
+                    LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: .clear, location: 0),
+                            .init(color: .black.opacity(0.9), location: 0.05),
+                            .init(color: .black.opacity(0.9), location: 0.95),
+                            .init(color: .clear, location: 1)
+                        ]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                ).clipped()
             
             if let teamLogo = driver.teamLogo {
-                    AsyncImage(url: URL(string: teamLogo)) { result in
-                        result.image?.resizable().scaledToFit()
-                    }.frame(width: 200, height: 200).cornerRadius(25).frame(maxWidth: .infinity)
+                AsyncImage(url: URL(string: teamLogo)) { result in
+                    result.image?.resizable().scaledToFit()
+                }.frame(width: 200, height: 200).cornerRadius(25).frame(maxWidth: .infinity)
             }
             
             HStack(alignment: .center) {
