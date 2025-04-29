@@ -8,9 +8,21 @@ import SwiftUI
 
 struct DriverDetailSuccessView: View {
     let driver: DriverDetailUI
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack(alignment: .leading) {
+            
+            Button(action: {
+                dismiss()
+            }) {
+                HStack(spacing: 4) {
+                    Image(systemName: "chevron.left")
+                    Text("Back")
+                }.foregroundColor(.blue)
+                .font(.system(size: 17, weight: .semibold))            }
+            
+            Spacer().frame(height: 25)
             HStack {
                 VStack(alignment: .leading) {
                     HStack {
@@ -59,6 +71,8 @@ struct DriverDetailSuccessView: View {
             
             Spacer().frame(height: 50)
             
+            DriverDetailFactView(label: "Team", value: driver.teamName)
+            
             if let podiums = driver.podiums {
                 DriverDetailFactView(label: "Podiums", value: "\(podiums)")
             }
@@ -77,8 +91,18 @@ struct DriverDetailSuccessView: View {
             
             if let teamLogo = driver.teamImage {
                 AsyncImage(url: teamLogo) { result in
-                    result.image?.resizable().scaledToFit()
-                }.frame(width: 200, height: 200).cornerRadius(25).frame(maxWidth: .infinity)
+                    if let image = result.image {
+                        (
+                            driver.overrideTeamLogoColor
+                            ? image.renderingMode(.template)
+                            : image
+                        )
+                        .resizable()
+                        .scaledToFit()
+                    }
+                }.frame(width: 200, height: 200).if(driver.overrideTeamLogoColor) { view in
+                    view.foregroundColor(Color(hex: driver.teamColor))
+                }.cornerRadius(25).frame(maxWidth: .infinity)
             }
             
             if let bio = driver.bio {
@@ -92,5 +116,5 @@ struct DriverDetailSuccessView: View {
 }
 
 #Preview {
-    DriverDetailSuccessView(driver: DriverDetailUI(id: "ffVIhdbm3JG51SJTpYNM", driverNumber: 44, name: "Lewis Hamilton", worldChampionships: 7, totalRaces: 230, podiums: 120, totalPoints: "430"))
+    DriverDetailSuccessView(driver: DriverDetailUI(id: "ffVIhdbm3JG51SJTpYNM", driverNumber: 44, name: "Lewis Hamilton", worldChampionships: 7, totalRaces: 230, podiums: 120, totalPoints: "430", overrideTeamLogoColor: false, teamColor: "000000", teamName: "Ferrari"))
 }

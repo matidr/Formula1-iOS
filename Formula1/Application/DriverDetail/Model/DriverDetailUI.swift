@@ -19,10 +19,13 @@ struct DriverDetailUI {
     var totalRaces: Int?
     var podiums: Int?
     var totalPoints: String?
+    var overrideTeamLogoColor: Bool
+    var teamColor: String
+    var teamName: String
 }
 
 extension Driver {
     func toDetailUI() -> DriverDetailUI {
-        DriverDetailUI(id: id, driverNumber: driverNumber, countryImage: countryImageURL, helmetImage: helmetImageURL, name: "\(name) \(lastName)", heroImage: driverHeroImage, teamImage: teamLogo, bio: bio, worldChampionships: worldChampionships, totalRaces: races, podiums: podiums, totalPoints: carreerPoints)
+        DriverDetailUI(id: id, driverNumber: driverNumber, countryImage: countryImageURL, helmetImage: helmetImageURL, name: "\(name) \(lastName)", heroImage: driverHeroImage, teamImage: teamLogo, bio: bio, worldChampionships: worldChampionships, totalRaces: races, podiums: podiums, totalPoints: carreerPoints, overrideTeamLogoColor: overrideTeamLogoColor, teamColor: teamColor, teamName: teamName)
     }
 }

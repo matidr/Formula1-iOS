@@ -26,4 +26,5 @@ struct DriverDto: Decodable {
     var teamLogo: String?
     var bio: String?
     var driverNumberImage: String?
+    var overrideTeamLogoColor: Bool?
 }

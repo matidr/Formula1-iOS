@@ -34,7 +34,8 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
                     teamName: dto.teamName ?? "",
                     nameAcronym: dto.nameAcronym ?? "",
                     countryImageURL: URL(string: dto.countryImage ?? ""),
-                    driverNumberImage: URL(string: dto.driverNumberImage ?? "")
+                    driverNumberImage: URL(string: dto.driverNumberImage ?? ""),
+                    overrideTeamLogoColor: false
                 )
             }
             return drivers
@@ -67,7 +68,8 @@ struct DriverRemoteDataSourceImpl: DriversDataSource {
                 countryImageURL: URL(string: dto.countryImage ?? ""),
                 bio: dto.bio ?? "",
                 driverHeroImage: URL(string: dto.driverImageHero ?? ""),
-                driverNumberImage: URL(string: dto.driverNumberImage ?? "")
+                driverNumberImage: URL(string: dto.driverNumberImage ?? ""),
+                overrideTeamLogoColor: dto.overrideTeamLogoColor ?? false
             )
         } catch {
             throw error

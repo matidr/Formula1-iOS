@@ -19,7 +19,7 @@ struct DriverDetailView: View {
                 LoadingView()
                 
             case .loaded(let driver):
-                DriverDetailSuccessView(driver: driver)
+                DriverDetailSuccessView(driver: driver).navigationBarHidden(true).navigationBarBackButtonHidden(true)
                 
             case .error(reason: let reason):
                 ErrorView(reason: reason)

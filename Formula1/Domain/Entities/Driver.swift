@@ -29,4 +29,5 @@ struct Driver: Identifiable {
     var bio: String?
     var driverHeroImage: URL?
     var driverNumberImage: URL?
+    var overrideTeamLogoColor: Bool
 }
