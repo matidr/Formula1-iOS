@@ -12,9 +12,6 @@ struct DriversListSuccessView: View {
     
     var body: some View {
         LazyVStack(alignment: .center, spacing: 15) {
-            AsyncImage(url: URL(string: "https://media.formula1.com/image/upload/f_auto,c_limit,w_285,q_auto/f_auto/q_auto/fom-website/etc/designs/fom-website/images/F1_75_Logo")) { result in
-                result.image?.resizable().scaledToFit()
-            }.frame(width: 200, height: 50).clipped()
             Text(title).font(.system(size: 32, design: .rounded)).fontWeight(.heavy).foregroundStyle(.white).padding([.bottom], 25)
             ForEach(Array(drivers), id: \.id) { driver in
                 NavigationLink(destination: DriverDetailView(driverId: driver.id)) {

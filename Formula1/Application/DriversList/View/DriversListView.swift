@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct DriversListView: View {
     
     @StateObject var vm = DriversListViewModel()
     
@@ -33,5 +33,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    DriversListView()
 }
