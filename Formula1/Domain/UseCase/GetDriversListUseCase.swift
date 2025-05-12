@@ -7,7 +7,7 @@
 import Combine
 
 struct GetDriversListUseCase {
-    var repo: DriversRepository
+    var repo: DriverRepository
     
     func getDrivers() async throws -> [Driver] {
         return try await repo.getDrivers()

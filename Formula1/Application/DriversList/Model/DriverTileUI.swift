@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct DriverTileUI {
+struct DriverTileUI: Identifiable {
     var id: String
     var name: String
     var lastName: String

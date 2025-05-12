@@ -6,8 +6,8 @@
 //
 import Combine
 
-struct DriverRepositoryImpl: DriversRepository {
-    var dataSource: DriversDataSource
+struct DriverRepositoryImpl: DriverRepository {
+    var dataSource: DriverDataSource
     
     func getDrivers() async throws -> [Driver]  {
         try await dataSource.getDrivers()

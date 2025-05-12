@@ -6,7 +6,7 @@
 //
 import Combine
 
-protocol DriversDataSource {
+protocol DriverDataSource {
     func getDrivers() async throws -> [Driver]
     func getDriver(driverId: String) async throws -> Driver
 }

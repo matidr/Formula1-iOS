@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import FirebaseFirestore
 
-struct DriverRemoteDataSourceImpl: DriversDataSource {
+struct DriverRemoteDataSourceImpl: DriverDataSource {
     let db = Firestore.firestore()
     
     func getDrivers() async throws -> [Driver] {

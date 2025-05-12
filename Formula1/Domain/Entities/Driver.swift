@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Driver: Identifiable {
+struct Driver {
     var id: String
     var driverNumber: Int
     var name: String
